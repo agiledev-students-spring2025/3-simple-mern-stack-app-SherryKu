@@ -78,5 +78,25 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+// a route to retrieve "About Us" page data
+app.get('/about-data', async (req, res) => {
+  try {
+    res.json({
+      title: 'About Us',
+      paragraphs: [
+        'Hello! I’m Sherry Liu, a CS student with a passion for becoming an artist.',
+        'I have been playing the pipa, a traditional Chinese instrument with over 1,300 years of history, for more than a decade.',
+        "This photo captures one of my recent live performances themed 'Tradition Reimagined.' In this show, I use the pipa to reinterpret modern pop songs, blending the old with the new. It was an incredibly enjoyable and unforgettable experience, and I hope to share this fusion of tradition and innovation with more people in the future."
+      ],
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve About Us data',
+    })
+  }
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
